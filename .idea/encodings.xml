@@ -5,6 +5,8 @@
     <file url="file://$PROJECT_DIR$/LOG/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gateway/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/src/main/resources" charset="UTF-8" />
   </component>

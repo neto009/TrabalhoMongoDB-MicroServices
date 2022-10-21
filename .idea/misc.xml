@@ -6,8 +6,9 @@
         <option value="$PROJECT_DIR$/LOG/pom.xml" />
         <option value="$PROJECT_DIR$/base/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/pom.xml" />
+        <option value="$PROJECT_DIR$/gateway/pom.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="corretto-17" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_18" default="true" project-jdk-name="corretto-17" project-jdk-type="JavaSDK" />
 </project>

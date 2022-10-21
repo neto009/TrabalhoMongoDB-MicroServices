@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/LOG/LOG.iml" filepath="$PROJECT_DIR$/LOG/LOG.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/TrabalhoMongoDB+MICROSERVICES.iml" filepath="$PROJECT_DIR$/.idea/TrabalhoMongoDB+MICROSERVICES.iml" />
       <module fileurl="file://$PROJECT_DIR$/base/base.iml" filepath="$PROJECT_DIR$/base/base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gateway/gateway.iml" filepath="$PROJECT_DIR$/gateway/gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/workspace/workspace.iml" filepath="$PROJECT_DIR$/workspace/workspace.iml" />
     </modules>
   </component>
