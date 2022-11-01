@@ -14,18 +14,18 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="base" target="1.5" />
+      <module name="base" target="17" />
       <module name="gateway" target="17" />
-      <module name="LOG" target="1.5" />
-      <module name="workspace" target="1.5" />
+      <module name="LOG" target="17" />
+      <module name="workspace" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="LOG" options="" />
-      <module name="base" options="" />
+      <module name="LOG" options="-parameters" />
+      <module name="base" options="-parameters" />
       <module name="gateway" options="-parameters" />
-      <module name="workspace" options="" />
+      <module name="workspace" options="-parameters" />
     </option>
   </component>
 </project>

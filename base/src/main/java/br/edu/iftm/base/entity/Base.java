@@ -1,4 +1,4 @@
-package br.edu.iftm.workspace.entity;
+package br.edu.iftm.base.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,11 +8,9 @@ import javax.persistence.Id;
 
 @Data
 @AllArgsConstructor
-public class Address {
-
+@Document(collection = "baseContent")
+public class Base {
     @Id
     private String id;
-    private String number;
-    private String street;
-    private String district;
+    private String name;
 }
