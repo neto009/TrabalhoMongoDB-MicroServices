@@ -51,7 +51,7 @@ public class WorkspaceService {
 
     public void delete(String id) {
         Workspace workspace = this.findById(id);
-        workspaceRepository.deleteById(id);
         workspace.getBases().parallelStream().forEach(base -> baseRepository.deleteById(base.getId()));
+        workspaceRepository.deleteById(id);
     }
 }

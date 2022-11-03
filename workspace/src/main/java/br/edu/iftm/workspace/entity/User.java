@@ -1,5 +1,6 @@
 package br.edu.iftm.workspace.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document(collection = "user")
+@JsonIgnoreProperties(value = { "address" })
 public class User {
 
     @Id

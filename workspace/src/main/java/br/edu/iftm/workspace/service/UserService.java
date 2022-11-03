@@ -16,8 +16,16 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(()-> new RuntimeException("No exist"));
     }
 
+    public User update (User user) {
+        return userRepository.save(user);
+    }
+
     public User save (UserForm userForm) {
         User user = new User(userForm.getEmail(), userForm.getName(), userForm.getAddress());
         return userRepository.save(user);
+    }
+
+    public void delete(String id) {
+        userRepository.deleteById(id);
     }
 }

@@ -24,4 +24,15 @@ public class UserController {
     public ResponseEntity<User> save(@RequestBody UserForm userForm) {
         return new ResponseEntity<>(userService.save(userForm), HttpStatus.OK);
     }
+
+    @PutMapping
+    public ResponseEntity<User> update (User user) {
+        return new ResponseEntity<>(userService.update(user), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete (@PathVariable String id) {
+        userService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
