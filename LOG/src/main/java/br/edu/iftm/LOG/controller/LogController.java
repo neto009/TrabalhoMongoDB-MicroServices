@@ -29,7 +29,7 @@ public class LogController {
     }
 
     @GetMapping("/user/{id}")
-    public Optional<Log> findByuser(@PathVariable String userId) {
+    public Optional<Log> findByUser(@PathVariable String userId) {
         return logService.findByUser(userId);
     }
 }
