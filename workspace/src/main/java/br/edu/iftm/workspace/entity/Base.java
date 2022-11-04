@@ -17,10 +17,10 @@ public class Base {
     @Id
     private String id;
     private String name;
-    private List<CollaboratorBase> collaboratorBaseList;
+    private List<Collaborator> collaboratorList;
 
-    public Base (String name, List<CollaboratorBase> collaboratorBaseList){
+    public Base (String name, List<Collaborator> collaboratorList){
         this.name = name;
-        this.collaboratorBaseList = collaboratorBaseList;
+        this.collaboratorList = collaboratorList;
     }
 }

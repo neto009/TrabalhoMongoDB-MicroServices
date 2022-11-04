@@ -3,15 +3,15 @@ package br.edu.iftm.workspace.service;
 import br.edu.iftm.workspace.dto.Access;
 import br.edu.iftm.workspace.dto.WorkspaceForm;
 import br.edu.iftm.workspace.entity.Base;
-import br.edu.iftm.workspace.entity.CollaboratorWorkspace;
+import br.edu.iftm.workspace.entity.Collaborator;
 import br.edu.iftm.workspace.entity.User;
 import br.edu.iftm.workspace.entity.Workspace;
 import br.edu.iftm.workspace.message.Message;
 import br.edu.iftm.workspace.message.dto.MessageDTO;
 import br.edu.iftm.workspace.repository.BaseRepository;
 import br.edu.iftm.workspace.repository.WorkspaceRepository;
-import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -30,6 +30,9 @@ public class WorkspaceService {
     private BaseRepository baseRepository;
 
     @Autowired
+    private MongoTemplate mongoTemplate;
+
+    @Autowired
     private Message message;
 
     public List<Workspace> findAll() {
@@ -42,11 +45,11 @@ public class WorkspaceService {
 
     public Workspace save(WorkspaceForm workspaceForm) {
         List<Base> baseList = new ArrayList<>();
-        List<CollaboratorWorkspace> collaboratorWorkspaceList = new ArrayList<>();
+        List<Collaborator> collaboratorList = new ArrayList<>();
         User user = userService.findById(workspaceForm.getUserId());
-        CollaboratorWorkspace collaboratorWorkspace = new CollaboratorWorkspace(user, Access.OWNER);
-        collaboratorWorkspaceList.add(collaboratorWorkspace);
-        Workspace workspace = workspaceRepository.save(new Workspace(workspaceForm.getName(), collaboratorWorkspaceList, baseList));
+        Collaborator collaborator = new Collaborator(user, Access.OWNER);
+        collaboratorList.add(collaborator);
+        Workspace workspace = workspaceRepository.save(new Workspace(workspaceForm.getName(), collaboratorList, baseList));
         message.sendMessage(new MessageDTO(workspace.getId(), workspace.getName(), user.getId(), Access.OWNER.toString()));
         return workspace;
     }

@@ -18,13 +18,13 @@ public class Workspace {
     @Id
     private String id;
     private String name;
-    private List<CollaboratorWorkspace> collaboratorWorkspaceList;
+    private List<Collaborator> collaboratorList;
     @DBRef(lazy = true)
     private List<Base> bases;
 
-    public Workspace (String name, List<CollaboratorWorkspace> collaboratorWorkspaceList, List<Base> bases) {
+    public Workspace (String name, List<Collaborator> collaboratorList, List<Base> bases) {
         this.name = name;
-        this.collaboratorWorkspaceList =collaboratorWorkspaceList;
+        this.collaboratorList = collaboratorList;
         this.bases = bases;
     }
 }

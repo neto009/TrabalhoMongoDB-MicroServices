@@ -39,21 +39,21 @@ public class BaseService {
 
     public Base save(BaseForm baseForm) {
         Workspace workspace = workspaceService.findById(baseForm.getWorkspaceId());
-        List<CollaboratorBase> collaboratorBaseList = new ArrayList<>();
+        List<Collaborator> collaboratorList = new ArrayList<>();
         User user = userService.findById(baseForm.getUserId());
-        Optional<CollaboratorWorkspace> owner = workspace.getCollaboratorWorkspaceList().stream()
+        Optional<Collaborator> owner = workspace.getCollaboratorList().stream()
                 .filter(colab-> colab.getUser().getId().equals(baseForm.getUserId())).findFirst();
         if(!owner.isPresent()){
-            CollaboratorBase collaboratorBase = new CollaboratorBase(user, Access.OWNER);
-            collaboratorBaseList.add(collaboratorBase);
+            Collaborator collaborator = new Collaborator(user, Access.OWNER);
+            collaboratorList.add(collaborator);
         }
-        Base base = new Base(baseForm.getName(), collaboratorBaseList);
+        Base base = new Base(baseForm.getName(), collaboratorList);
         Base currentBase = baseRepository.save(base);
         List<Base> baseList = workspace.getBases();
         baseList.add(currentBase);
         workspace.setBases(baseList);
         workspaceService.update(workspace);
-        BaseFeignForm baseFeignForm = baseFeign.saveBase(new BaseFeignForm(currentBase.getId(), currentBase.getName()));
+        baseFeign.saveBase(new BaseFeignForm(currentBase.getId(), currentBase.getName()));
         message.sendMessage(new MessageDTO(currentBase.getId(), currentBase.getName(), user.getId(), Access.OWNER.toString()));
         return currentBase;
     }
