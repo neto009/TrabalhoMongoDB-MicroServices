@@ -1,5 +1,6 @@
 package br.edu.iftm.LOG.message;
 
+import br.edu.iftm.LOG.dto.LogDTO;
 import br.edu.iftm.LOG.entity.Log;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class LogMessage {
     @Autowired
     public RabbitTemplate rabbitTemplate;
 
-    public void sendMessage(Log log) {
-        rabbitTemplate.convertAndSend(exchange, routingKey, log);
+    public void sendMessage(LogDTO logDTO) {
+        rabbitTemplate.convertAndSend(exchange, routingKey, logDTO);
     }
 }

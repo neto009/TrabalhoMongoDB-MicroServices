@@ -1,5 +1,7 @@
 package br.edu.iftm.LOG.service;
 
+import br.edu.iftm.LOG.dto.LogDTO;
+import br.edu.iftm.LOG.dto.MessageDTO;
 import br.edu.iftm.LOG.entity.Log;
 import br.edu.iftm.LOG.message.LogMessage;
 import br.edu.iftm.LOG.repository.LogRepository;
@@ -29,4 +31,13 @@ public class LogService {
         return logRepository.findByUser(id);
     }
 
+    public Log save(MessageDTO messageDTO) {
+        Log log = logRepository.save(new Log(messageDTO.getSpaceId(),
+                                                messageDTO.getSpaceName(),
+                                                messageDTO.getUser(),
+                                                messageDTO.getCollaboratorAccess()));
+        LogDTO logDTO = new LogDTO(log);
+        logMessage.sendMessage(logDTO);
+        return log;
+    }
 }

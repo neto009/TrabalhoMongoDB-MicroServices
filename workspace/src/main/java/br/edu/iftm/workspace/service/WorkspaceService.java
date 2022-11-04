@@ -6,6 +6,8 @@ import br.edu.iftm.workspace.entity.Base;
 import br.edu.iftm.workspace.entity.CollaboratorWorkspace;
 import br.edu.iftm.workspace.entity.User;
 import br.edu.iftm.workspace.entity.Workspace;
+import br.edu.iftm.workspace.message.Message;
+import br.edu.iftm.workspace.message.dto.MessageDTO;
 import br.edu.iftm.workspace.repository.BaseRepository;
 import br.edu.iftm.workspace.repository.WorkspaceRepository;
 import com.netflix.discovery.converters.Auto;
@@ -27,6 +29,9 @@ public class WorkspaceService {
     @Autowired
     private BaseRepository baseRepository;
 
+    @Autowired
+    private Message message;
+
     public List<Workspace> findAll() {
         return workspaceRepository.findAll();
     }
@@ -41,8 +46,9 @@ public class WorkspaceService {
         User user = userService.findById(workspaceForm.getUserId());
         CollaboratorWorkspace collaboratorWorkspace = new CollaboratorWorkspace(user, Access.OWNER);
         collaboratorWorkspaceList.add(collaboratorWorkspace);
-        Workspace workspace = new Workspace(workspaceForm.getName(), collaboratorWorkspaceList, baseList);
-        return workspaceRepository.save(workspace);
+        Workspace workspace = workspaceRepository.save(new Workspace(workspaceForm.getName(), collaboratorWorkspaceList, baseList));
+        message.sendMessage(new MessageDTO(workspace.getId(), workspace.getName(), user.getId(), Access.OWNER.toString()));
+        return workspace;
     }
 
     public Workspace update(Workspace workspace) {

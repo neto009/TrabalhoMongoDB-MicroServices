@@ -11,9 +11,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableMongoRepositories
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
 public class LogApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(LogApplication.class, args);
 	}
-
 }
