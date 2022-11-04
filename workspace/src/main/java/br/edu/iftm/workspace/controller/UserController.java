@@ -1,6 +1,7 @@
 package br.edu.iftm.workspace.controller;
 
 import br.edu.iftm.workspace.dto.UserForm;
+import br.edu.iftm.workspace.dto.UserUpdateForm;
 import br.edu.iftm.workspace.entity.User;
 import br.edu.iftm.workspace.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,8 @@ public class UserController {
     }
 
     @PutMapping
-    public ResponseEntity<User> update (User user) {
-        return new ResponseEntity<>(userService.update(user), HttpStatus.OK);
+    public ResponseEntity<User> update (@RequestBody UserUpdateForm userUpdateForm) {
+        return new ResponseEntity<>(userService.update(userUpdateForm.getId(), userUpdateForm.getName()), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

@@ -16,8 +16,10 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(()-> new RuntimeException("No exist"));
     }
 
-    public User update (User user) {
-        return userRepository.save(user);
+    public User update (String id, String name) {
+        User currentUser = userRepository.findById(id).orElseThrow(()-> new RuntimeException("No Exist"));
+        currentUser.setName(name);
+        return userRepository.save(currentUser);
     }
 
     public User save (UserForm userForm) {

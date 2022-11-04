@@ -1,0 +1,31 @@
+{
+	"info": {
+		"_postman_id": "af2c27cb-ca06-450f-a3d8-6b229a9be242",
+		"name": "Base-MicroService2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14135347"
+	},
+	"item": [
+		{
+			"name": "BASE BY ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8765/base-client/base/63643553b0a26374cbf80040",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8765",
+					"path": [
+						"base-client",
+						"base",
+						"63643553b0a26374cbf80040"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
