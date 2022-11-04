@@ -1,9 +1,7 @@
 package br.edu.iftm.LOG.service;
 
-import br.edu.iftm.LOG.dto.LogDTO;
 import br.edu.iftm.LOG.dto.MessageDTO;
 import br.edu.iftm.LOG.entity.Log;
-import br.edu.iftm.LOG.message.LogMessage;
 import br.edu.iftm.LOG.repository.LogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,9 +13,6 @@ import java.util.Optional;
 public class LogService {
     @Autowired
     private LogRepository logRepository;
-
-    @Autowired
-    private LogMessage logMessage;
 
     public List<Log> findAll() {
         return logRepository.findAll();
@@ -36,8 +31,6 @@ public class LogService {
                                                 messageDTO.getSpaceName(),
                                                 messageDTO.getUser(),
                                                 messageDTO.getCollaboratorAccess()));
-        LogDTO logDTO = new LogDTO(log);
-        logMessage.sendMessage(logDTO);
         return log;
     }
 }
