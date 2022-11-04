@@ -5,6 +5,8 @@ import br.edu.iftm.workspace.dto.BaseForm;
 import br.edu.iftm.workspace.entity.*;
 import br.edu.iftm.workspace.feign.BaseFeign;
 import br.edu.iftm.workspace.feign.feignDTO.BaseFeignForm;
+import br.edu.iftm.workspace.message.Message;
+import br.edu.iftm.workspace.message.dto.MessageDTO;
 import br.edu.iftm.workspace.repository.BaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +30,9 @@ public class BaseService {
     @Autowired
     private BaseFeign baseFeign;
 
+    @Autowired
+    private Message message;
+
     public Base findById(String id) {
         return baseRepository.findById(id).orElseThrow(()-> new RuntimeException("No Exist"));
     }
@@ -49,6 +54,7 @@ public class BaseService {
         workspace.setBases(baseList);
         workspaceService.update(workspace);
         BaseFeignForm baseFeignForm = baseFeign.saveBase(new BaseFeignForm(currentBase.getId(), currentBase.getName()));
+        message.sendMessage(new MessageDTO(currentBase.getId(), currentBase.getName(), user.getId(), Access.OWNER.toString()));
         return currentBase;
     }
 
