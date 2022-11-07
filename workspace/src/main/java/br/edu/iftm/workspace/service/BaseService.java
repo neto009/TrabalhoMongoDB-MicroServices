@@ -2,10 +2,12 @@ package br.edu.iftm.workspace.service;
 
 import br.edu.iftm.workspace.dto.Access;
 import br.edu.iftm.workspace.dto.BaseForm;
-import br.edu.iftm.workspace.entity.*;
-import br.edu.iftm.workspace.feign.BaseFeign;
-import br.edu.iftm.workspace.feign.feignDTO.BaseFeignForm;
+import br.edu.iftm.workspace.entity.Base;
+import br.edu.iftm.workspace.entity.Collaborator;
+import br.edu.iftm.workspace.entity.User;
+import br.edu.iftm.workspace.entity.Workspace;
 import br.edu.iftm.workspace.message.Message;
+import br.edu.iftm.workspace.message.dto.MessageBaseDTO;
 import br.edu.iftm.workspace.message.dto.MessageDTO;
 import br.edu.iftm.workspace.repository.BaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +28,6 @@ public class BaseService {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private BaseFeign baseFeign;
 
     @Autowired
     private Message message;
@@ -53,7 +52,7 @@ public class BaseService {
         baseList.add(currentBase);
         workspace.setBases(baseList);
         workspaceService.update(workspace);
-        baseFeign.saveBase(new BaseFeignForm(currentBase.getId(), currentBase.getName()));
+        message.sendMessageBase(new MessageBaseDTO(currentBase.getId(), currentBase.getName()));
         message.sendMessage(new MessageDTO(currentBase.getId(), currentBase.getName(), user.getId(), Access.OWNER.toString()));
         return currentBase;
     }

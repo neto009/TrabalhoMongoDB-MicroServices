@@ -1,23 +1,19 @@
-package br.edu.iftm.base.entity;
+package br.edu.iftm.base.entity.attributes;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Id;
-import java.util.List;
+import java.time.Instant;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "base")
-public class Base {
-
+@Document(collection = "dateTable")
+public class DateDocument {
     @Id
     private String id;
-    private String name;
-    @DBRef
-    private List<Table> table;
+    private String value;
 }

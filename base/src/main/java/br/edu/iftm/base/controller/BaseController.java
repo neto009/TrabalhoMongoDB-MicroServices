@@ -19,8 +19,8 @@ public class BaseController {
         return new ResponseEntity<>(baseService.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<Base> save (@RequestBody Base base) {
-        return new ResponseEntity<>(baseService.save(base), HttpStatus.OK);
+    @PutMapping
+    public ResponseEntity<Base> update (@RequestBody Base base) {
+        return new ResponseEntity<>(baseService.update(base), HttpStatus.OK);
     }
 }

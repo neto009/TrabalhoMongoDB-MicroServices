@@ -1,7 +1,6 @@
-package br.edu.iftm.workspace.message;
+package br.edu.iftm.base.message;
 
-import br.edu.iftm.workspace.message.dto.MessageBaseDTO;
-import br.edu.iftm.workspace.message.dto.MessageDTO;
+import br.edu.iftm.base.message.dto.MessageDTO;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,15 +9,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class Message {
 
-    @Value("${workspace.rabbitmq.exchange}")
+    @Value("${base.rabbitmq.exchange}")
     String exchange;
 
-    @Value("${workspace.rabbitmq.routingkey}")
+    @Value("${base.rabbitmq.routingkey}")
     String routingKey;
-
-    @Value("${sendBase.rabbitmq.routingkey}")
-    String routingKeyBase;
-
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -26,8 +21,5 @@ public class Message {
     public void sendMessage(MessageDTO messageDTO) {
         rabbitTemplate.convertAndSend(exchange, routingKey, messageDTO);
     }
-
-    public void sendMessageBase(MessageBaseDTO messageBaseDTO) {
-        rabbitTemplate.convertAndSend(exchange, routingKeyBase, messageBaseDTO);
-    }
 }
+
