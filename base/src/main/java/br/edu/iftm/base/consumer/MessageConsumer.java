@@ -13,7 +13,7 @@ public class MessageConsumer {
     @Autowired
     private BaseService baseService;
 
-    @RabbitListener(queues = "base.queue")
+    @RabbitListener(queues = "workspacesend.queue")
     public void receive (ConsumerDTO consumerDTO) {
         Base base = baseService.save(consumerDTO.getId(), consumerDTO.getName());
     }
