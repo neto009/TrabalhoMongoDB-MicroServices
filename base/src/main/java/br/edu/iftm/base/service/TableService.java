@@ -11,11 +11,12 @@ public class TableService {
     @Autowired
     private TableRepository tableRepository;
 
-    public Table findById (String id) {
+    public Table findById(String id) {
         return tableRepository.findById(id).orElseThrow(()-> new RuntimeException("No Exist"));
     }
 
     public Table save(Table table) {
         return tableRepository.save(table);
     }
+
 }

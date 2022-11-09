@@ -26,4 +26,12 @@ public class ReferenceAttributes {
     private List<DateDocument> dateDocument = new ArrayList<>();
     @DBRef(lazy = true)
     private List<StringDocument> stringDocument = new ArrayList<>();
+
+    public ReferenceAttributes(List<NumberDocument> numberDocument,
+                               List<DateDocument> dateDocument,
+                               List<StringDocument> stringDocument) {
+        this.numberDocument = numberDocument;
+        this.dateDocument = dateDocument;
+        this.stringDocument = stringDocument;
+    }
 }

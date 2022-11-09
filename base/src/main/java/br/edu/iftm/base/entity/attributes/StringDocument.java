@@ -15,4 +15,8 @@ public class StringDocument {
     @Id
     private String id;
     private String value;
+
+    public StringDocument (String value) {
+        this.value = value;
+    }
 }

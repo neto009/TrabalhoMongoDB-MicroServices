@@ -14,5 +14,9 @@ import javax.persistence.Id;
 public class NumberDocument {
     @Id
     private String id;
-    private Boolean value;
+    private Long value;
+
+    public NumberDocument(Long value) {
+        this.value = value;
+    }
 }

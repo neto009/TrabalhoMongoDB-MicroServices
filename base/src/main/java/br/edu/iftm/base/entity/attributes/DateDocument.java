@@ -16,4 +16,8 @@ public class DateDocument {
     @Id
     private String id;
     private String value;
+
+    public DateDocument (String value) {
+        this.value = value;
+    }
 }
