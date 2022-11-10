@@ -52,4 +52,9 @@ public class TableController {
         return new ResponseEntity<>(referenceAttributesService.insertDateValue(linesForm.getId(),
                 LocalDate.now().toString()), HttpStatus.OK);
     }
+
+    @PutMapping("/insertLine/{attributeId}")
+    public ResponseEntity<ReferenceAttributes> insertLine(@PathVariable String attributeId) {
+        return new ResponseEntity<>(referenceAttributesService.insertLine(attributeId), HttpStatus.OK);
+    }
 }

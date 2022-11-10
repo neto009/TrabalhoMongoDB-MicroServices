@@ -1,7 +1,6 @@
 package br.edu.iftm.base.service;
 
 import br.edu.iftm.base.entity.ReferenceAttributes;
-import br.edu.iftm.base.entity.Table;
 import br.edu.iftm.base.entity.attributes.DateDocument;
 import br.edu.iftm.base.entity.attributes.NumberDocument;
 import br.edu.iftm.base.entity.attributes.StringDocument;
@@ -9,6 +8,7 @@ import br.edu.iftm.base.repository.DateDocumentRepository;
 import br.edu.iftm.base.repository.NumberDocumentRepository;
 import br.edu.iftm.base.repository.ReferenceAttributesRepository;
 import br.edu.iftm.base.repository.StringDocumentRepository;
+import br.edu.iftm.base.repository.impl.ReferenceAttibutesImplements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +34,9 @@ public class ReferenceAttributesService {
     @Autowired
     private StringDocumentRepository stringDocumentRepository;
 
+    @Autowired
+    private ReferenceAttibutesImplements referenceAttibutesImplements;
+
     public ReferenceAttributes save() {
         List<NumberDocument> numberDocuments = new ArrayList<>(Arrays.asList(numberDocumentRepository.save(new NumberDocument(null))));
         List<DateDocument> dateDocuments = new ArrayList<>(Arrays.asList(dateDocumentRepository.save(new DateDocument(null))));
@@ -41,13 +44,19 @@ public class ReferenceAttributesService {
         return referenceAttributesRepository.save(new ReferenceAttributes(numberDocuments, dateDocuments, stringDocuments));
     }
 
-    public ReferenceAttributes insertLine(String tableId) {
-        Table table = tableService.findById(tableId);
-        List<NumberDocument> numberDocuments = new ArrayList<>(Arrays.asList(numberDocumentRepository.save(new NumberDocument(null))));
-        List<DateDocument> dateDocuments = new ArrayList<>(Arrays.asList(dateDocumentRepository.save(new DateDocument(null))));
-        List<StringDocument> stringDocuments = new ArrayList<>(Arrays.asList(stringDocumentRepository.save(new StringDocument(null))));
-        ReferenceAttributes referenceAttributes = referenceAttributesRepository.save(new ReferenceAttributes(numberDocuments, dateDocuments, stringDocuments));
-        return referenceAttributes;
+    public ReferenceAttributes insertLine(String attributesId) {
+        NumberDocument numberDocument = numberDocumentRepository.save(new NumberDocument(null));
+        DateDocument dateDocument = dateDocumentRepository.save(new DateDocument(null));
+        StringDocument stringDocuments = stringDocumentRepository.save(new StringDocument(null));
+        referenceAttibutesImplements.saveNumberDocument(attributesId, numberDocument.getId());
+        referenceAttibutesImplements.saveDateDocument(attributesId, dateDocument.getId());
+        referenceAttibutesImplements.saveStringDocument(attributesId, stringDocuments.getId());
+        return ReferenceAttributes.builder()
+                .id(attributesId)
+                .dateDocument(Arrays.asList(dateDocument))
+                .numberDocument(Arrays.asList(numberDocument))
+                .stringDocument(Arrays.asList(stringDocuments))
+                .build();
     }
 
     public NumberDocument insertNumberValue(String id, Long value) {
