@@ -38,19 +38,23 @@ public class ReferenceAttributesService {
     private ReferenceAttibutesImplements referenceAttibutesImplements;
 
     public ReferenceAttributes save() {
-        List<NumberDocument> numberDocuments = new ArrayList<>(Arrays.asList(numberDocumentRepository.save(new NumberDocument(null))));
-        List<DateDocument> dateDocuments = new ArrayList<>(Arrays.asList(dateDocumentRepository.save(new DateDocument(null))));
-        List<StringDocument> stringDocuments = new ArrayList<>(Arrays.asList(stringDocumentRepository.save(new StringDocument(null))));
-        return referenceAttributesRepository.save(new ReferenceAttributes(numberDocuments, dateDocuments, stringDocuments));
+        return referenceAttributesRepository.save(ReferenceAttributes
+                .builder()
+                .numberDocument(Arrays.asList(numberDocumentRepository.save(new NumberDocument(null))))
+                .stringDocument(Arrays.asList(stringDocumentRepository.save(new StringDocument(null))))
+                .dateDocument(Arrays.asList(dateDocumentRepository.save(new DateDocument(null))))
+                .build());
     }
 
     public ReferenceAttributes insertLine(String attributesId) {
         NumberDocument numberDocument = numberDocumentRepository.save(new NumberDocument(null));
         DateDocument dateDocument = dateDocumentRepository.save(new DateDocument(null));
         StringDocument stringDocuments = stringDocumentRepository.save(new StringDocument(null));
+
         referenceAttibutesImplements.saveNumberDocument(attributesId, numberDocument.getId());
         referenceAttibutesImplements.saveDateDocument(attributesId, dateDocument.getId());
         referenceAttibutesImplements.saveStringDocument(attributesId, stringDocuments.getId());
+
         return ReferenceAttributes.builder()
                 .id(attributesId)
                 .dateDocument(Arrays.asList(dateDocument))
