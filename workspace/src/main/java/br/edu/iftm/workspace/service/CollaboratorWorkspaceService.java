@@ -1,9 +1,8 @@
 package br.edu.iftm.workspace.service;
 
-import br.edu.iftm.workspace.dto.Access;
+import br.edu.iftm.workspace.enums.Access;
 import br.edu.iftm.workspace.entity.Collaborator;
 import br.edu.iftm.workspace.entity.User;
-import com.mongodb.BasicDBObject;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;

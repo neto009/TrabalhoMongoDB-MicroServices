@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class WorkspaceNotFoundException extends RuntimeException {
+public class NotFoundException extends RuntimeException {
     private String message;
 }

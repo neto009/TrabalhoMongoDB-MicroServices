@@ -1,4 +1,4 @@
-package br.edu.iftm.workspace.dto;
+package br.edu.iftm.workspace.enums;
 
 public enum TransactionType {
     UPDATE, DELETE, SAVE;

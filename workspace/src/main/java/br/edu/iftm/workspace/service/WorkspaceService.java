@@ -1,12 +1,12 @@
 package br.edu.iftm.workspace.service;
 
-import br.edu.iftm.workspace.dto.Access;
+import br.edu.iftm.workspace.enums.Access;
 import br.edu.iftm.workspace.dto.WorkspaceForm;
 import br.edu.iftm.workspace.entity.Base;
 import br.edu.iftm.workspace.entity.Collaborator;
 import br.edu.iftm.workspace.entity.User;
 import br.edu.iftm.workspace.entity.Workspace;
-import br.edu.iftm.workspace.exception.WorkspaceNotFoundException;
+import br.edu.iftm.workspace.exception.NotFoundException;
 import br.edu.iftm.workspace.message.Message;
 import br.edu.iftm.workspace.message.dto.MessageDTO;
 import br.edu.iftm.workspace.repository.BaseRepository;
@@ -31,9 +31,6 @@ public class WorkspaceService {
     private BaseRepository baseRepository;
 
     @Autowired
-    private MongoTemplate mongoTemplate;
-
-    @Autowired
     private Message message;
 
     public List<Workspace> findAll() {
@@ -41,7 +38,7 @@ public class WorkspaceService {
     }
 
     public Workspace findById(String id) {
-        return workspaceRepository.findById(id).orElseThrow(() -> new WorkspaceNotFoundException("Workspace no Exist!"));
+        return workspaceRepository.findById(id).orElseThrow(() -> new NotFoundException("Workspace no Exist!"));
     }
 
     public Workspace save(WorkspaceForm workspaceForm) {

@@ -23,9 +23,6 @@ public class ReferenceAttributesService {
     private ReferenceAttributesRepository referenceAttributesRepository;
 
     @Autowired
-    private TableService tableService;
-
-    @Autowired
     private NumberDocumentRepository numberDocumentRepository;
 
     @Autowired

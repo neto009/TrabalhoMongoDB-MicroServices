@@ -1,11 +1,12 @@
 package br.edu.iftm.workspace.service;
 
-import br.edu.iftm.workspace.dto.Access;
+import br.edu.iftm.workspace.enums.Access;
 import br.edu.iftm.workspace.dto.BaseForm;
 import br.edu.iftm.workspace.entity.Base;
 import br.edu.iftm.workspace.entity.Collaborator;
 import br.edu.iftm.workspace.entity.User;
 import br.edu.iftm.workspace.entity.Workspace;
+import br.edu.iftm.workspace.exception.NotFoundException;
 import br.edu.iftm.workspace.message.Message;
 import br.edu.iftm.workspace.message.dto.MessageBaseDTO;
 import br.edu.iftm.workspace.message.dto.MessageDTO;
@@ -33,7 +34,7 @@ public class BaseService {
     private Message message;
 
     public Base findById(String id) {
-        return baseRepository.findById(id).orElseThrow(()-> new RuntimeException("No Exist"));
+        return baseRepository.findById(id).orElseThrow(() -> new NotFoundException("Base no Exist!"));
     }
 
     public Base save(BaseForm baseForm) {

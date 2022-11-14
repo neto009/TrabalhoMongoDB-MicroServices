@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -24,7 +25,7 @@ public class WorkspaceController {
     }
 
     @PostMapping
-    public ResponseEntity<Workspace> save (@RequestBody WorkspaceForm workspaceForm){
+    public ResponseEntity<Workspace> save (@Valid @RequestBody WorkspaceForm workspaceForm){
         return new ResponseEntity<>(workspaceService.save(workspaceForm), HttpStatus.OK);
     }
 

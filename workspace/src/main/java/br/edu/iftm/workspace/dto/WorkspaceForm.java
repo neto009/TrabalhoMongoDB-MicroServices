@@ -1,12 +1,15 @@
 package br.edu.iftm.workspace.dto;
 
-import br.edu.iftm.workspace.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+
+import javax.validation.constraints.NotBlank;
 
 @Data
 @AllArgsConstructor
 public class WorkspaceForm {
+    @NotBlank(message = "Workspace name cannot be blank!")
     private String name;
+    @NotBlank(message = "UserID cannot be blank!")
     private String userId;
 }

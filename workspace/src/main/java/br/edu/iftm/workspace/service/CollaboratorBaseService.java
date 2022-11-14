@@ -1,6 +1,6 @@
 package br.edu.iftm.workspace.service;
 
-import br.edu.iftm.workspace.dto.Access;
+import br.edu.iftm.workspace.enums.Access;
 import br.edu.iftm.workspace.entity.Collaborator;
 import br.edu.iftm.workspace.entity.User;
 import org.bson.types.ObjectId;

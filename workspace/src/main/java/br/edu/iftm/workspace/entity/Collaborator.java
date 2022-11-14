@@ -1,6 +1,6 @@
 package br.edu.iftm.workspace.entity;
 
-import br.edu.iftm.workspace.dto.Access;
+import br.edu.iftm.workspace.enums.Access;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
