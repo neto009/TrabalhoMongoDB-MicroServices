@@ -1,6 +1,7 @@
 package br.edu.iftm.workspace;
 
 import br.edu.iftm.workspace.dto.WorkspaceForm;
+import br.edu.iftm.workspace.entity.Base;
 import br.edu.iftm.workspace.entity.Collaborator;
 import br.edu.iftm.workspace.entity.User;
 import br.edu.iftm.workspace.entity.Workspace;
@@ -47,6 +48,8 @@ public class WorkspaceServiceTest {
     private User user;
     private Collaborator collaborator;
     private Workspace workspace;
+    private Base firstBase;
+    private Base secondBase;
 
     @BeforeEach
     void setup(){
@@ -69,17 +72,31 @@ public class WorkspaceServiceTest {
     }
 
     @Test
+    void findById() {
+        Mockito.when(workspaceRepository.findById(Mockito.anyString())).thenReturn(Optional.of(workspace));
+        Workspace currentWorkspace = workspaceService.findById("1L");
+
+        Assertions.assertEquals(currentWorkspace, workspace);
+    }
+
+    @Test
     void findByIdException(){
         Mockito.when(workspaceRepository.findById(Mockito.anyString())).thenReturn(Optional.empty());
 
         //Assertions
         Assertions.assertThrows(NotFoundException.class, () -> workspaceService.findById("2L"), "Workspace no Exist!");
+    }
+
+    @Test
+    void deleteWorkspace() {
 
     }
 
     public void config(){
         user = new User(ID, EMAIL, NAME, null);
         collaborator = new Collaborator(user, Access.OWNER);
-        workspace = new Workspace("1L", "WorkspaceTest", Arrays.asList(collaborator), Arrays.asList());
+        firstBase = new Base("1L","Base-1", Arrays.asList());
+        secondBase = new Base("2L","Base-2", Arrays.asList());
+        workspace = new Workspace("1L", "WorkspaceTest", Arrays.asList(collaborator), Arrays.asList(firstBase, secondBase));
     }
 }
