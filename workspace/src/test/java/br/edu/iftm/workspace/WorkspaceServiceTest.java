@@ -15,10 +15,7 @@ import br.edu.iftm.workspace.service.WorkspaceService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -89,7 +86,11 @@ public class WorkspaceServiceTest {
 
     @Test
     void deleteWorkspace() {
+        Mockito.when(workspaceRepository.findById(Mockito.anyString())).thenReturn(Optional.of(workspace));
+        workspaceService.delete("1L");
 
+        Mockito.verify(workspaceRepository, Mockito.times(1)).deleteById(ArgumentMatchers.any());
+        Mockito.verify(baseRepository, Mockito.times(2)).deleteById(ArgumentMatchers.any());
     }
 
     public void config(){
