@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("base")
 public class BaseController {
@@ -21,7 +23,7 @@ public class BaseController {
     }
 
     @PostMapping
-    public ResponseEntity<Base> save(@RequestBody BaseForm baseForm) {
+    public ResponseEntity<Base> save(@Valid @RequestBody BaseForm baseForm) {
         return new ResponseEntity<>(baseService.save(baseForm), HttpStatus.OK);
     }
 

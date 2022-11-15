@@ -16,6 +16,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -42,12 +43,9 @@ public class WorkspaceService {
     }
 
     public Workspace save(WorkspaceForm workspaceForm) {
-        List<Base> baseList = new ArrayList<>();
-        List<Collaborator> collaboratorList = new ArrayList<>();
         User user = userService.findById(workspaceForm.getUserId());
         Collaborator collaborator = new Collaborator(user, Access.OWNER);
-        collaboratorList.add(collaborator);
-        Workspace workspace = workspaceRepository.save(new Workspace(workspaceForm.getName(), collaboratorList, baseList));
+        Workspace workspace = workspaceRepository.save(new Workspace(workspaceForm.getName(), Arrays.asList(collaborator), Arrays.asList()));
         message.sendMessage(new MessageDTO(workspace.getId(), workspace.getName(), user.getId(), Access.OWNER.toString()));
         return workspace;
     }
