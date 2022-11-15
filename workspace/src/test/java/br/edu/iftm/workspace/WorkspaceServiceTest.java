@@ -5,6 +5,7 @@ import br.edu.iftm.workspace.entity.Collaborator;
 import br.edu.iftm.workspace.entity.User;
 import br.edu.iftm.workspace.entity.Workspace;
 import br.edu.iftm.workspace.enums.Access;
+import br.edu.iftm.workspace.exception.NotFoundException;
 import br.edu.iftm.workspace.message.Message;
 import br.edu.iftm.workspace.repository.BaseRepository;
 import br.edu.iftm.workspace.repository.WorkspaceRepository;
@@ -19,6 +20,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 public class WorkspaceServiceTest {
 
@@ -64,6 +66,15 @@ public class WorkspaceServiceTest {
         Mockito.verify(workspaceRepository).save(new Workspace("WorkspaceTest", Arrays.asList(collaborator), Arrays.asList()));
 
         Assertions.assertEquals(currentWorkspace, workspace);
+    }
+
+    @Test
+    void findByIdException(){
+        Mockito.when(workspaceRepository.findById(Mockito.anyString())).thenReturn(Optional.empty());
+
+        //Assertions
+        Assertions.assertThrows(NotFoundException.class, () -> workspaceService.findById("2L"), "Workspace no Exist!");
+
     }
 
     public void config(){
