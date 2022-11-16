@@ -39,7 +39,7 @@ public class WorkspaceService {
     }
 
     public Workspace findById(String id) {
-        return workspaceRepository.findById(id).orElseThrow(() -> new NotFoundException("Workspace no Exist!"));
+        return workspaceRepository.findById(id).orElseThrow(() -> new NotFoundException("Workspace doesn't Exist!"));
     }
 
     public Workspace save(WorkspaceForm workspaceForm) {

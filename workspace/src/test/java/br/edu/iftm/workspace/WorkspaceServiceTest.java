@@ -65,7 +65,7 @@ public class WorkspaceServiceTest {
         Mockito.verify(userService).findById("1L");
         Mockito.verify(workspaceRepository).save(new Workspace("WorkspaceTest", Arrays.asList(collaborator), Arrays.asList()));
 
-        Assertions.assertEquals(currentWorkspace, workspace);
+        Assertions.assertEquals(workspace, currentWorkspace);
     }
 
     @Test
@@ -73,7 +73,8 @@ public class WorkspaceServiceTest {
         Mockito.when(workspaceRepository.findById(Mockito.anyString())).thenReturn(Optional.of(workspace));
         Workspace currentWorkspace = workspaceService.findById("1L");
 
-        Assertions.assertEquals(currentWorkspace, workspace);
+        Assertions.assertEquals(workspace, currentWorkspace);
+        Assertions.assertEquals(workspace.getId(), currentWorkspace.getId());
     }
 
     @Test
