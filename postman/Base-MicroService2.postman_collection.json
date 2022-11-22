@@ -12,7 +12,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8765/base-client/base/63643553b0a26374cbf80040",
+					"raw": "http://localhost:8765/base-client/base/636bbf44df5e9b29ee03f631",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -21,7 +21,37 @@
 					"path": [
 						"base-client",
 						"base",
-						"63643553b0a26374cbf80040"
+						"636bbf44df5e9b29ee03f631"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE TABLE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"baseId\":\"636bbf44df5e9b29ee03f631\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8765/base-client/base/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8765",
+					"path": [
+						"base-client",
+						"base",
+						""
 					]
 				}
 			},
